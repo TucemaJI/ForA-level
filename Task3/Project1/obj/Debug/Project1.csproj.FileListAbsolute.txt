@@ -1,7 +1,0 @@
-D:\Programming\Project location\Task3\Project1\obj\Debug\Project1.csprojResolveAssemblyReference.cache
-D:\Programming\Project location\Task3\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
-D:\Programming\Project location\Task3\Project1\bin\Debug\Project1.exe.config
-D:\Programming\Project location\Task3\Project1\bin\Debug\Project1.exe
-D:\Programming\Project location\Task3\Project1\bin\Debug\Project1.pdb
-D:\Programming\Project location\Task3\Project1\obj\Debug\Project1.exe
-D:\Programming\Project location\Task3\Project1\obj\Debug\Project1.pdb

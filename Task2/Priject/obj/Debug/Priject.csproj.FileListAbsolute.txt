@@ -1,7 +1,0 @@
-D:\Programming\Project location\Task2\Priject\bin\Debug\Priject.exe.config
-D:\Programming\Project location\Task2\Priject\bin\Debug\Priject.exe
-D:\Programming\Project location\Task2\Priject\bin\Debug\Priject.pdb
-D:\Programming\Project location\Task2\Priject\obj\Debug\Priject.csprojResolveAssemblyReference.cache
-D:\Programming\Project location\Task2\Priject\obj\Debug\Priject.csproj.CoreCompileInputs.cache
-D:\Programming\Project location\Task2\Priject\obj\Debug\Priject.exe
-D:\Programming\Project location\Task2\Priject\obj\Debug\Priject.pdb
