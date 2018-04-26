@@ -1,0 +1,6 @@
+D:\Programming\Project location\Task3\Project2\obj\Debug\Project2.csproj.CoreCompileInputs.cache
+D:\Programming\Project location\Task3\Project2\bin\Debug\Project2.exe.config
+D:\Programming\Project location\Task3\Project2\bin\Debug\Project2.exe
+D:\Programming\Project location\Task3\Project2\bin\Debug\Project2.pdb
+D:\Programming\Project location\Task3\Project2\obj\Debug\Project2.exe
+D:\Programming\Project location\Task3\Project2\obj\Debug\Project2.pdb
