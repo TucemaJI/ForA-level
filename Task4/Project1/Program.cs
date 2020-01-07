@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project1
 {
@@ -10,7 +6,6 @@ namespace Project1
     {
         int h = 0;
         int w = 0;
-        bool p = false;
 
         public Rectangle(int h, int w)
         {
@@ -19,30 +14,25 @@ namespace Project1
         }
         public void S()
         {
-            while (!p)
+            try
             {
-                try
-                {
-                    int S = h * w;
-                    Console.WriteLine("Your h = " + h);
-                    Console.WriteLine("Your w = " + w);
-                    Console.WriteLine("Your S = " + S);
-                    break;
-                }
-                catch (OverflowException)
-                {
-                    Console.WriteLine("Enter a less number");
-                    p = true;
-                }
+                int S = h * w;
+                Console.WriteLine("Your h = " + h);
+                Console.WriteLine("Your w = " + w);
+                Console.WriteLine("Your S = " + S);
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Enter a less number");
             }
         }
     }
+
     class Program
     {
         static void Main(string[] args)
         {
-            bool p = false;
-            while (!p)
+            while (true)
             {
                 try
                 {
@@ -62,7 +52,6 @@ namespace Project1
                     Console.WriteLine("Enter a less number next time");
                 }
             }
-            Console.ReadLine();
         }
     }
 }
