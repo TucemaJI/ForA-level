@@ -6,133 +6,77 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
-    class Cashmachine : IStart
+    class Cashmachine : ICashmachine
     {
-        private string[,] users = new string[6, 3];
+        private string[,] _users = new string[7, 3];
 
         private void Admin()
         {
-            users[0, 0] = "Admin";
-            users[0, 1] = "admin";
-            users[0, 2] = "100000";
+            _users[0, 0] = "Admin";
+            _users[0, 1] = "admin";
+            _users[0, 2] = "100000";
         }
         private void Users()
         {
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i < 7; i++)
             {
-                users[i, 2] = "10000";
+                _users[i, 2] = "10000";
             }
-            users[1, 0] = "Vasya";
-            users[1, 1] = "vas11";
-            users[2, 0] = "Gosha";
-            users[2, 1] = "gosh1233";
-            users[3, 0] = "Gadya";
-            users[3, 1] = "gad66";
-            users[4, 0] = "Petrovich";
-            users[4, 1] = "pet2134";
-            users[5, 0] = "Hrenovo";
-            users[5, 1] = "hren11";
-            //users[6, 0] = "Vova";
-            //users[6, 1] = "vov33";
+            _users[1, 0] = "Vasya";
+            _users[1, 1] = "vas11";
+            _users[2, 0] = "Gosha";
+            _users[2, 1] = "gosh1233";
+            _users[3, 0] = "Gadya";
+            _users[3, 1] = "gad66";
+            _users[4, 0] = "Petrovich";
+            _users[4, 1] = "pet2134";
+            _users[5, 0] = "Hrenovo";
+            _users[5, 1] = "hren11";
+            _users[6, 0] = "Vova";
+            _users[6, 1] = "vov33";
         }
-        public void Cashmach()
+        public string GetUser(int row, int str)
+        {
+            return _users[row, str];
+        }
+        public Cashmachine()
         {
             Admin(); Users();
-            bool exit = false;
-            int account = 0;
-
-            int isEnter = CheckIDPass();
-            if (isEnter > 0)
-            {
-                while (!exit)
-                {
-                    GetMoney(isEnter);
-                    Console.WriteLine("Enter 1 for exit");
-                    Byte.TryParse(Getting(), out byte ex);
-                    if (ex == 1)
-                    {
-                        exit = true;
-                    }
-                }
-
-            }
-            else if (isEnter == 0)
-            {
-                while (!exit)
-                {
-                    int choise = GetChoise();
-                    switch (choise)
-                    {
-                        case 1:
-                            account = AccountAdd();
-                            break;
-
-                        case 2:
-                            for (int i = 0; i < 6; i++)
-                            {
-                                if (users[i, 0] != null)
-                                {
-                                    Console.WriteLine($"№{i}\t{users[i, 0]}\t{users[i, 1]}\t{users[i, 2]}");
-                                }
-                            }
-                            break;
-
-                        case 3:
-                            AccountDelete();
-                            account--;
-                            break;
-
-                        case 4:
-                            GetMoney(isEnter);
-                            break;
-
-                        default:
-                            exit = true;
-                            break;
-                    }
-                }
-
-            }
-
         }
-        private string Getting()
-        {
-            string getting = Console.ReadLine();
-            return getting;
-        }
-        private int CheckIDPass()
+
+        public int CheckIDPass()
         {
             Console.WriteLine("Enter your ID");
-            string checkid = Getting();
-            for (int i = 0; i <= users.Length / 3; i++)
+            string checkid = Console.ReadLine();
+            for (int i = 0; i < _users.Length / 3; i++)
             {
-                if (users[i, 0] == checkid)
+                if (_users[i, 0] == checkid)
                 {
                     byte tryes = 3;
                     Console.WriteLine("Enter your Password");
-                    string checkpass = Getting();
-                    if (users[i, 1] == checkpass)
+                    string checkpass = Console.ReadLine();
+                    if (_users[i, 1] == checkpass)
                     { return i; }
-                    while (users[i, 1] != checkpass && tryes != 0)
+                    while (_users[i, 1] != checkpass && tryes != 0)
                     {
                         Console.WriteLine("You have entered the different password, you have only {0} tryes", tryes);
                         tryes--;
                         Console.WriteLine("Enter your Password");
-                        checkpass = Getting();
-                        if (users[i, 1] == checkpass)
+                        checkpass = Console.ReadLine();
+                        if (_users[i, 1] == checkpass)
                         { return i; }
                     }
                     if (tryes == 0)
                     {
                         for (; i > 0 && i < 6; i++)
                         {
-                            users[i, 0] = users[i + 1, 0];
-                            users[i, 1] = users[i + 1, 1];
-                            users[i, 2] = users[i + 1, 2];
+                            _users[i, 0] = _users[i + 1, 0];
+                            _users[i, 1] = _users[i + 1, 1];
+                            _users[i, 2] = _users[i + 1, 2];
 
-                            if (users[i, 0] == null)
+                            if (_users[i, 0] == null)
                             {
-                                Array.Clear(users, i * 3, 3);
+                                Array.Clear(_users, i * 3, 3);
                                 break;
                             }
                         }
@@ -142,13 +86,21 @@ namespace Project1
             Console.WriteLine("You have been written the different password or account");
             return -1;
         }
-        private void GetMoney(int i)
+        public char GetMoney(int i)
         {
             Console.WriteLine("Please enter that quantity of money, what you need for taking.");
-            int result = 0;
+            Console.WriteLine("Enter q for exit");
+            
+            string result = Console.ReadLine();
+            Char.TryParse(result, out char ex);
+            if (ex == 'q')
+            {
+                return ex;
+            }
+            int money = 0;
             try
             {
-                result = Int32.Parse(Getting());
+                money = Int32.Parse(result);
             }
             catch (OverflowException)
             {
@@ -158,82 +110,112 @@ namespace Project1
             {
                 Console.WriteLine("Enter the number next time");
             }
-            Int32.TryParse(users[i, 2], out int account);
-            if (account >= result)
+            Int32.TryParse(_users[i, 2], out int account);
+            if (account >= money)
             {
-                account = account - result;
-                account.ToString(users[i, 2]);
+                account -= money;
+                account.ToString(_users[i, 2]);
+                return 'n';
             }
             else
             {
                 Console.WriteLine("Not enough money. Go work.");
+                return 'n';
             }
         }
-        private int GetChoise()
+        public bool GetChoise(int accChosen)
         {
+            int account = 0;
+            bool exit = false;
             Console.WriteLine("Choose that number, what you need, greatest admin");
             Console.WriteLine("1 - Add new account");
             Console.WriteLine("2 - Show accounts");
             Console.WriteLine("3 - Delete account");
             Console.WriteLine("Another number - Exit");
             Int32.TryParse(Console.ReadLine(), out int choise);
-            return choise;
+            switch (choise)
+            {
+                case 1:
+                    account = AccountAdd();
+                    break;
+
+                case 2:
+                    for (int i = 0; i < 7; i++)
+                    {
+                        if (GetUser(i, 0) != null)
+                        {
+                            Console.WriteLine($"№{i}\t{GetUser(i, 0)}\t{GetUser(i, 1)}\t{GetUser(i, 2)}");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    AccountDelete();
+                    break;
+
+                case 4:
+                    GetMoney(accChosen);
+                    break;
+
+                default:
+                    exit = true;
+                    break;
+            }
+            return exit;
         }
         private int AccountAdd()
         {
             Console.WriteLine("Choose numer for account");
-            Int32.TryParse(Console.ReadLine(), out int account_add);
-            if (users[account_add, 0] == null)
+            Int32.TryParse(Console.ReadLine(), out int accountAdd);
+            if (_users[accountAdd, 0] == null)
             {
                 Console.WriteLine($"Enter new ID");
-                users[account_add, 0] = Getting();
+                _users[accountAdd, 0] = Console.ReadLine();
             }
             else
             {
                 Console.WriteLine("No place for new account");
-                return account_add;
+                return accountAdd;
             }
             Console.WriteLine($"Enter the password");
-            users[account_add, 1] = Getting();
+            _users[accountAdd, 1] = Console.ReadLine();
 
             Console.WriteLine("Enters start cash");
             int result = 0;
             try
             {
-                result = Int32.Parse(Getting());
+                result = Int32.Parse(Console.ReadLine());
             }
             catch (FormatException)
             {
                 Console.WriteLine("Enter the number next time");
             }
-            result.ToString(users[account_add, 2]);
-            account_add++;
+            result.ToString(_users[accountAdd, 2]);
+            accountAdd++;
 
-            return account_add;
+            return accountAdd;
         }
         private void AccountDelete()
         {
             Console.WriteLine("Csoose № for delete");
             Int32.TryParse(Console.ReadLine(), out int calculation);
-            if (users[calculation, 2] == null)
+            if (_users[calculation, 2] == null)
             {
-                Array.Clear(users, calculation * 3, 3);
+                Array.Clear(_users, calculation * 3, 3);
                 for (; calculation < 6; calculation++)
                 {
-                    users[calculation, 0] = users[calculation + 1, 0];
-                    users[calculation, 1] = users[calculation + 1, 1];
-                    users[calculation, 2] = users[calculation + 1, 2];
+                    _users[calculation, 0] = _users[calculation + 1, 0];
+                    _users[calculation, 1] = _users[calculation + 1, 1];
+                    _users[calculation, 2] = _users[calculation + 1, 2];
 
-                    if (users[calculation, 0] == null)
+                    if (_users[calculation, 0] == null)
                     {
-                        Array.Clear(users, calculation * 3, 3);
+                        Array.Clear(_users, calculation * 3, 3);
                         break;
                     }
                 }
             }
             else { Console.WriteLine("This account with money, sorry, but you cat't delete it."); }
         }
-
-
     }
 }

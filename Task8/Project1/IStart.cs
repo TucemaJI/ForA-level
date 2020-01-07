@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
-    interface IStart
+    interface ICashmachine
     {
-        void Cashmach();
+        string GetUser(int row, int str);
+        int CheckIDPass();
+        char GetMoney(int i);
+        bool GetChoise(int account);
     }
 }

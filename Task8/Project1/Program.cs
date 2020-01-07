@@ -10,7 +10,28 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            new Cashmachine().Cashmach();
+            var cashmachine = new Cashmachine();
+            bool exit = false;
+            int isEnter = -1;
+            while (isEnter <= 0)
+            {
+                isEnter = cashmachine.CheckIDPass();
+            }
+            while (!exit)
+            {
+                if (isEnter > 0)
+                {
+                    char ex = cashmachine.GetMoney(isEnter);
+                    if (ex == 'q')
+                    {
+                        exit = true;
+                    }
+                }
+                else if (isEnter == 0)
+                {
+                    exit = cashmachine.GetChoise(isEnter);
+                }
+            }
         }
     }
 }
