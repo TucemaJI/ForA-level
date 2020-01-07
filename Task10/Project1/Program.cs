@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project1
 {
@@ -11,10 +7,11 @@ namespace Project1
         static void Main(string[] args)
         {
             GameLife life = new GameLife();
-            int live_points = -1;
-            bool repeat = false;
             life.FillField();
             life.SetPoints();
+            int live_points;
+            bool repeat;
+
             do
             {
                 life.Show();

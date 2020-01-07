@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project1
 {
     class GameLife
     {
-
-
         char[,] _prevField = new char[9, 9];
         char[,] _field = new char[9, 9];
         public void FillField()
@@ -58,7 +52,7 @@ namespace Project1
             }
             return count;
         }
-        public void PointNeighbours(int[,] _mass, int x, int y)
+        private void PointNeighbours(int[,] _mass, int x, int y)
         {
             int count = 0;
             for (int i = x - 1; i <= x + 1; i++)
@@ -75,7 +69,7 @@ namespace Project1
                 }
             }
         }
-        public int CountNeighbours(char[,] _field, int x, int y)
+        private int CountNeighbours(char[,] _field, int x, int y)
         {
             int coun = 0;
             int[,] _nb = new int[9, 2];
@@ -108,7 +102,6 @@ namespace Project1
         public void Round()
         {
             int live_nb;
-
 
             for (int i = 0; i < 9; i++)
             {
@@ -151,7 +144,5 @@ namespace Project1
             }
             return true;
         }
-
-
     }
 }
