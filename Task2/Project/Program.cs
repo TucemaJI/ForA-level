@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Priject
 {
@@ -19,7 +15,6 @@ namespace Priject
                 Console.WriteLine(day + " Days " + km + " kilometers");
             } while (km <= 100);
             Console.ReadLine();
-            //For what I need '%' ?
         }
     }
 }
